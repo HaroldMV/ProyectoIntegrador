@@ -37,7 +37,7 @@ namespace ProyectoTest.Logica
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 SqlCommand cmd = new SqlCommand
-                    ("sp_listaProducto", oConexion);
+                    ("sp_obtenerProducto", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
