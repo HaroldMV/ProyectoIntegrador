@@ -29,12 +29,13 @@ namespace ProyectoTest.Logica
             }
         }
 
-        public List<Categoria> Listar() {
-
+        public List<Categoria> Listar()
+        {
             List<Categoria> rptListaCategoria = new List<Categoria>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
-                SqlCommand cmd = new SqlCommand("sp_obtenerCategoria", oConexion);
+                SqlCommand cmd = new SqlCommand
+                    ("sp_obtenerCategoria", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 try
@@ -64,8 +65,7 @@ namespace ProyectoTest.Logica
             }
         }
 
-
-        public bool Registrar(Categoria oCategoria)
+                    public bool Registrar(Categoria oCategoria)
         {
             bool respuesta = true;
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
