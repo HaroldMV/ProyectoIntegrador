@@ -33,13 +33,12 @@ namespace ProyectoTest.Logica
 
         public List<Producto> Listar()
         {
-
             List<Producto> rptListaProducto = new List<Producto>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
-                SqlCommand cmd = new SqlCommand("sp_obtenerProducto", oConexion);
+                SqlCommand cmd = new SqlCommand
+                    ("sp_listaProducto", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-
                 try
                 {
                     oConexion.Open();
@@ -52,7 +51,7 @@ namespace ProyectoTest.Logica
                             IdProducto = Convert.ToInt32(dr["IdProducto"].ToString()),
                             Nombre = dr["Nombre"].ToString(),
                             Descripcion = dr["Descripcion"].ToString(),
-                            oMarca = new Marca() { IdMarca = Convert.ToInt32(dr["IdMarca"].ToString()),Descripcion = dr["DescripcionMarca"].ToString() },
+                            oMarca = new Marca() { IdMarca = Convert.ToInt32(dr["IdMarca"].ToString()), Descripcion = dr["DescripcionMarca"].ToString() },
                             oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(dr["IdCategoria"].ToString()), Descripcion = dr["DescripcionCategoria"].ToString() },
                             Precio = Convert.ToDecimal(dr["Precio"].ToString(), new CultureInfo("es-PE")),
                             Stock = Convert.ToInt32(dr["Stock"].ToString()),
@@ -75,7 +74,15 @@ namespace ProyectoTest.Logica
 
 
 
-        public int Registrar(Producto oProducto)
+
+
+
+
+
+
+
+
+                    public int Registrar(Producto oProducto)
         {
             int respuesta = 0;
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
