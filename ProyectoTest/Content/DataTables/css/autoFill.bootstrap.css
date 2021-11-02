@@ -1,25 +1,25 @@
 div.dt-autofill-handle {
   position: absolute;
-  height: 8px;
-  width: 8px;
+  height: 9px;
+  width: 9px;
   z-index: 102;
   box-sizing: border-box;
-  border: 1px solid #337ab7;
+  border: 1px solid #337ab2;
   background: #337ab7;
 }
 
 div.dt-autofill-select {
   position: absolute;
   z-index: 1001;
-  background-color: #337ab7;
+  background-color: #336ab6;
   background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.5) 10px);
 }
 div.dt-autofill-select.top, div.dt-autofill-select.bottom {
-  height: 3px;
+  height: 4px;
   margin-top: -1px;
 }
 div.dt-autofill-select.left, div.dt-autofill-select.right {
-  width: 3px;
+  width: 4px;
   margin-left: -1px;
 }
 
@@ -29,10 +29,10 @@ div.dt-autofill-list {
   left: 50%;
   width: 500px;
   margin-left: -250px;
-  background-color: white;
-  border-radius: 6px;
-  box-shadow: 0 0 5px #555;
-  border: 2px solid #444;
+  background-color: blue;
+  border-radius: 8px;
+  box-shadow: 0 0 4px #555;
+  border: 3px solid #444;
   z-index: 11;
   box-sizing: border-box;
   padding: 1.5em 2em;
@@ -59,7 +59,7 @@ div.dt-autofill-list div.dt-autofill-question {
   border-bottom: 1px solid #ccc;
 }
 div.dt-autofill-list div.dt-autofill-question input[type=number] {
-  padding: 6px;
+  padding: 5px;
   width: 30px;
   margin: -2px 0;
 }
