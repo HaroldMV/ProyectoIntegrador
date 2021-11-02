@@ -1,5 +1,5 @@
 div.dt-autofill-handle {
-  position: absolute;
+  position: fixed;
   height: 8px;
   width: 8px;
   z-index: 102;
@@ -9,17 +9,17 @@ div.dt-autofill-handle {
 }
 
 div.dt-autofill-select {
-  position: absolute;
+  position: fixed;
   z-index: 1001;
   background-color: #4989de;
   background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.5) 10px);
-}
-div.dt-autofill-select.top, div.dt-autofill-select.bottom {
-  height: 3px;
+.bottom {
+  height: 3px;}
+div.dt-autofill-select.top, div.dt-autofill-select
   margin-top: -1px;
 }
 div.dt-autofill-select.left, div.dt-autofill-select.right {
-  width: 3px;
+  width: 5px;
   margin-left: -1px;
 }
 
