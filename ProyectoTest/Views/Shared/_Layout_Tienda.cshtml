@@ -15,17 +15,17 @@
 
             <!-- Sidebar Toggle-->
             <button class="btn btn-dark btn-ver-categoria" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i> Ver Categorias</button>
-
+             <div class="btn btn-dark btn-ver-vender"><a id="publicidad_cuenta" href="@Url.Action("Registrarse","Login")"> Vender</a></div>
             <!-- Navbar-->
             @{
                 if (((ProyectoTest.Models.Usuario)Session["Usuario"]).EsAdministrador == false)
                 {
                     <!-- <form action="@Url.Action("Carrito","Tienda")" method="post" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                        <button class="btn btn-close-white" type="submit">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="badge bg-dark text-white ms-1 rounded-pill contador-carrito">0</span>
-                        </button>
-                    </form>-->
+                <button class="btn btn-close-white" type="submit">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge bg-dark text-white ms-1 rounded-pill contador-carrito">0</span>
+                </button>
+            </form>-->
 
                     <ul class="navbar-nav me-2">
                         <li class="nav-item dropdown">

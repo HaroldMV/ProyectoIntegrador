@@ -242,6 +242,8 @@ namespace ProyectoTest.Controllers
                                                 Cantidad = dc.Cantidad
                                             }).ToList()
                       }).ToList();
+
+
             return Json(new { lista = oLista }, JsonRequestBehavior.AllowGet);
         }
     }
