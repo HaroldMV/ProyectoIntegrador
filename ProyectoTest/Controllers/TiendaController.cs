@@ -105,12 +105,45 @@ namespace ProyectoTest.Controllers
                           Activo = o.Activo
                       }).ToList();
 
-            if (idcategoria != 0){
-                oLista = oLista.Where(x => x.oCategoria.IdCategoria == idcategoria).ToList() ;
+            if (idcategoria != 0)
+            {
+                oLista = oLista.Where(x => x.oCategoria.IdCategoria == idcategoria).ToList();
             }
 
             return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
         }
+
+    //    [HttpPost]
+   //     public JsonResult ListarProductoxPrecio(int idcategoria = 0, int precioMinimo = 0, int precioMaximo = 0)
+    //    {
+    //        List<Producto> oLista = new List<Producto>();
+    //
+    //        oLista = ProductoLogica.Instancia.Listar();
+     //       oLista = (from o in oLista
+      //                select new Producto()
+       //               {
+      //                    IdProducto = o.IdProducto,
+        //                  Nombre = o.Nombre,
+          //                Descripcion = o.Descripcion,
+            //              oMarca = o.oMarca,
+  //                        oCategoria = o.oCategoria,
+    //                      Precio = o.Precio,
+      //                    Stock = o.Stock,
+        //                  RutaImagen = o.RutaImagen,
+          //                base64 = utilidades.convertirBase64(Server.MapPath(o.RutaImagen)),
+            //              extension = Path.GetExtension(o.RutaImagen).Replace(".", ""),
+              //            Activo = o.Activo
+ //                     }).ToList();
+ //
+   //         if (idcategoria != 0 && precioMinimo != 0 && precioMaximo != 0)
+     //       {
+       //         oLista = oLista.Where(x => x.oCategoria.IdCategoria == idcategoria && x.Precio <= precioMaximo && x.Precio >= precioMinimo).ToList();
+       
+       //         return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
+
+      //      }
+
+//        }
 
         [HttpGet]
         public JsonResult ListarCategoria()
