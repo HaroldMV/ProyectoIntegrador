@@ -158,7 +158,7 @@ namespace ProyectoTest.Logica
             List<Compra> rptDetalleCompra = new List<Compra>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
-                SqlCommand cmd = new SqlCommand("sp_ObtenerCompra", oConexion);
+                SqlCommand cmd = new SqlCommand("sp_ObtenerCompraa01", oConexion);
                 cmd.Parameters.AddWithValue("@IdUsuario", IdUsuario);
                 cmd.CommandType = CommandType.StoredProcedure;
 
