@@ -15,7 +15,17 @@
 
             <!-- Sidebar Toggle-->
             <button class="btn btn-dark btn-ver-categoria" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i> Ver Categorias</button>
-             <div class="btn btn-dark btn-ver-vender"><a id="publicidad_cuenta" href="@Url.Action("Registrarse","Login")"> Vender</a></div>
+            
+
+            <div class="Rangos">
+                
+                
+                <input type="text" name="Precio" id="precio" style=" width: 420px; height:40px;border:1px;" />
+                <input type="submit" value="Buscar" style=" background: #000000; color: #ffffff; width: 120px; height: 35px; border:1px;" />
+
+            </div>
+            <div class="btn btn-dark btn-ver-vender"><a id="publicidad_cuenta" href="@Url.Action("Registrarse","Login")"> Vender</a></div>
+
             <!-- Navbar-->
             @{
                 if (((ProyectoTest.Models.Usuario)Session["Usuario"]).EsAdministrador == false)
