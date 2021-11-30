@@ -54,6 +54,17 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <select class="form-control" id="selectEsAdministrador" name="Tipo" value="@Html.DisplayTextFor(model => model.EsAdministrador)">
+                                                        <option value="0">COMPRAR</option>
+                                                        <option value="1">VENDER</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-floating">
                                             @{if (ViewBag.Error != null)
                                                 {

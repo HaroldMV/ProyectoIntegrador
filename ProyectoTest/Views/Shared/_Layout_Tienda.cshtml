@@ -15,11 +15,11 @@
 
             <!-- Sidebar Toggle-->
             <button class="btn btn-dark btn-ver-categoria" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i> Ver Categorias</button>
-            
+
 
             <div class="Rangos">
-                
-                
+
+
                 <input type="text" name="Precio" id="precio" style=" width: 420px; height:40px;border:1px;" />
                 <input type="submit" value="Buscar" style=" background: #000000; color: #ffffff; width: 120px; height: 35px; border:1px;" />
 
@@ -31,15 +31,15 @@
                 if (((ProyectoTest.Models.Usuario)Session["Usuario"]).EsAdministrador == false)
                 {
                     <!-- <form action="@Url.Action("Carrito","Tienda")" method="post" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <button class="btn btn-close-white" type="submit">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="badge bg-dark text-white ms-1 rounded-pill contador-carrito">0</span>
-                </button>
-            </form>-->
+                        <button class="btn btn-close-white" type="submit">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill contador-carrito">0</span>
+                        </button>
+                    </form>-->
 
                     <ul class="navbar-nav me-2">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>@ViewData["Usuario"]</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("Index","Tienda")">Ir a Tienda</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Compras","Tienda")">Mis Compras</a></li>
@@ -76,6 +76,19 @@
             </div>
         </div>
     </div>
+    <script>
+        window.watsonAssistantChatOptions = {
+            integrationID: "99f538e0-875a-4c7b-aa6c-9b043766d7f3", // The ID of this integration.
+            region: "us-south", // The region your integration is hosted in.
+            serviceInstanceID: "a1521ff9-8562-4b09-a289-f17919754b38", // The ID of your service instance.
+            onLoad: function (instance) { instance.render(); }
+        };
+        setTimeout(function () {
+            const t = document.createElement('script');
+            t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js"
+            document.head.appendChild(t);
+        });
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

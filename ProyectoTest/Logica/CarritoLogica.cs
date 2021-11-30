@@ -178,6 +178,7 @@ namespace ProyectoTest.Logica
                                                     {
                                                         Total = Convert.ToDecimal(c.Element("Total").Value,new CultureInfo("es-PE")),
                                                         FechaTexto = c.Element("Fecha").Value,
+                                                        Estado =c.Element("Estado").Value,
                                                         oDetalleCompra = (from d in c.Element("DETALLE_PRODUCTO").Elements("PRODUCTO")
                                                                           select new DetalleCompra() {
                                                                               oProducto = new Producto() {

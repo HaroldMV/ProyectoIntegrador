@@ -20,6 +20,7 @@ namespace ProyectoTest.Controllers
                 return RedirectToAction("Index", "Login");
             else
                 oUsuario = (Usuario)Session["Usuario"];
+            ViewData["Usuario"] = ((Usuario)Session["Usuario"]).Nombres;
 
             return View();
         }
@@ -229,6 +230,7 @@ namespace ProyectoTest.Controllers
                       {
                           Total = c.Total,
                           FechaTexto = c.FechaTexto,
+                          Estado=c.Estado,
                           oDetalleCompra = (from dc in c.oDetalleCompra
                                             select new DetalleCompra() {
                                                 oProducto = new Producto() {

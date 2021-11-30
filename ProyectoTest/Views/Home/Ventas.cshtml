@@ -1,0 +1,201 @@
+﻿
+@{
+    ViewBag.Title = "Ventas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="index.html"></a></li>
+    <li class="breadcrumb-item active">Ventas</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i> Productos Vendidos
+    </div>
+    <div class="card-body">
+        <div class="row">
+
+        </div>
+
+        <hr />
+        <table id="tabla" class="display responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Comprador</th>
+                    <th>Telefono</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+@section scripts{
+
+    <script>
+        var tabladata;
+
+        console.log("eNTRO");
+
+
+        $(document).ready(function () {
+
+            tabladata = $('#tabla').DataTable({
+                responsive: true,
+                "ajax": {
+                    "url": '@Url.Action("ListarVentas", "Home")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "ProDesc" },
+                    { "data": "Total" },
+                    { "data": "Comprador" },
+                    { "data": "Telefono" },
+                    { "data": "Fecha" },
+                    {
+                        "data": "ID_Estado", render: function (data) {
+                            if (data == "1") {
+                                return "Cancelado"
+                            } else if (data == "2") {
+                                return "Enviado"
+                            } else {
+                                return "Entregado"
+                            }
+                        }
+                    },
+                    {
+                        "data": "ID_Compra", "render": function (data, type, row, meta) {
+                            return $("<button>").addClass("btn btn-danger btn-cancel btn-sm").append(
+                                $("<i>").addClass("fas fa-ban")
+                            ).attr({ "data-informacion": JSON.stringify(row) })[0].outerHTML
+                                +
+                                $("<button>").addClass("btn btn-primary btn-enviar btn-sm ms-2").append(
+                                    $("<i>").addClass("fas fa-paper-plane")
+                                ).attr({ "data-informacion": JSON.stringify(row) })[0].outerHTML +
+                                $("<button>").addClass("btn btn-success btn-entrega btn-sm ms-2").append(
+                                    $("<i>").addClass("fas fa-check-circle")
+                                ).attr({ "data-informacion": JSON.stringify(row) })[0].outerHTML;;
+
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "125px"
+                    }
+
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json"
+                }
+            });
+
+
+        });
+
+
+
+        $(document).on('click', '.btn-cancel', function (event) {
+            var json = $(this).data("informacion")
+            if (confirm('¿Esta seguro de actualizar el Estado a cancelar?')) {
+                 jQuery.ajax({
+                        url: '@Url.Action("ActEstadoCompra", "Home")',
+                        type: "POST",
+                        data: JSON.stringify({ id: json.ID_Compra,estado:1}),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+
+                            if (data.resultado) {
+                                tabladata.ajax.reload();
+                            } else {
+                                alert("No se pudo cambiar el estado")
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        },
+                        beforeSend: function () {
+
+                        },
+                    });
+            } else {
+
+            }
+        });
+
+          $(document).on('click', '.btn-enviar', function (event) {
+            var json = $(this).data("informacion")
+            if (confirm('¿Esta seguro de actualizar el Estado a enviado?')) {
+                 jQuery.ajax({
+                        url: '@Url.Action("ActEstadoCompra", "Home")',
+                        type: "POST",
+                        data: JSON.stringify({ id: json.ID_Compra,estado:2}),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+
+                            if (data.resultado) {
+                                tabladata.ajax.reload();
+                            } else {
+                                alert("No se pudo cambiar el estado")
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        },
+                        beforeSend: function () {
+
+                        },
+                    });
+            } else {
+
+            }
+          });
+
+
+        $(document).on('click', '.btn-entrega', function (event) {
+            var json = $(this).data("informacion")
+            if (confirm('¿Esta seguro de actualizar el Estado a Entregado?')) {
+                 jQuery.ajax({
+                        url: '@Url.Action("ActEstadoCompra", "Home")',
+                        type: "POST",
+                        data: JSON.stringify({ id: json.ID_Compra,estado:3}),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+
+                            if (data.resultado) {
+                                tabladata.ajax.reload();
+                            } else {
+                                alert("No se pudo cambiar el estado")
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        },
+                        beforeSend: function () {
+
+                        },
+                    });
+            } else {
+
+            }
+        });
+
+
+
+    </script>
+
+}
+

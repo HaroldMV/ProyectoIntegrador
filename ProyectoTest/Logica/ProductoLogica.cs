@@ -90,6 +90,7 @@ namespace ProyectoTest.Logica
                     cmd.Parameters.AddWithValue("Precio", oProducto.Precio );
                     cmd.Parameters.AddWithValue("Stock", oProducto.Stock );
                     cmd.Parameters.AddWithValue("RutaImagen",oProducto.RutaImagen );
+                    cmd.Parameters.AddWithValue("IDUsuario", oProducto.ID_Usuario);
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -175,24 +176,22 @@ namespace ProyectoTest.Logica
                     SqlCommand cmd = new SqlCommand("delete from Producto where idProducto = @id", oConexion);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.CommandType = CommandType.Text;
-
                     oConexion.Open();
-
                     cmd.ExecuteNonQuery();
-
                     respuesta = true;
-
                 }
                 catch (Exception ex)
                 {
                     respuesta = false;
                 }
-
             }
 
             return respuesta;
 
         }
+
+
+
 
     }
 }

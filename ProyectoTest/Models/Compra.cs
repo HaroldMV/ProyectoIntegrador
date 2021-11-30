@@ -16,6 +16,7 @@ namespace ProyectoTest.Models
         public string Direccion { get; set; }
         public string IdDistrito { get; set; }
         public string FechaTexto { get; set; }
+        public string Estado { get; set; }
         public List<DetalleCompra> oDetalleCompra { get; set; }
 
     }
