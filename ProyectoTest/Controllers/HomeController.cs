@@ -17,6 +17,8 @@ namespace ProyectoTest.Controllers
             if (Session["Usuario"] == null)
                 return RedirectToAction("Index", "Login");
 
+            ViewData["Usuario"] = ((Usuario)Session["Usuario"]).Nombres;
+
             return View();
         }
 
@@ -40,6 +42,16 @@ namespace ProyectoTest.Controllers
         {
             if (Session["Usuario"] == null)
                 return RedirectToAction("Index", "Login");
+
+            return View();
+        }
+
+        public ActionResult Ventas()
+        {
+            if (Session["Usuario"] == null)
+                return RedirectToAction("Index", "Login");
+
+            ViewData["Usuario"] = ((Usuario)Session["Usuario"]).Nombres;
 
             return View();
         }
@@ -124,6 +136,26 @@ namespace ProyectoTest.Controllers
             return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ListarVentas()
+        {
+            List<Ventas> oLista = new List<Ventas>();
+            int id = ((Usuario)Session["Usuario"]).IdUsuario;
+            oLista = VentaLogica.Instancia.Listar(id);
+            oLista = (from o in oLista
+                      select new Ventas()
+                      {
+                          ID_Compra=o.ID_Compra,
+                          ID_Estado=o.ID_Estado,
+                          ProDesc=o.ProDesc,
+                          Comprador=o.Comprador,
+                          Telefono=o.Telefono,
+                          Fecha=o.Fecha,
+                          Total=o.Total
+
+                      }).ToList();
+            return Json(new { data = oLista }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult GuardarProducto(string objeto, HttpPostedFileBase imagenArchivo)
         {
@@ -134,6 +166,11 @@ namespace ProyectoTest.Controllers
             {
                 Producto oProducto = new Producto();
                 oProducto = JsonConvert.DeserializeObject<Producto>(objeto);
+
+
+                int idUsuario = ((Usuario)Session["Usuario"]).IdUsuario;
+
+                oProducto.ID_Usuario = idUsuario;
 
                 string GuardarEnRuta = "~/Imagenes/Productos/";
                 string physicalPath = Server.MapPath("~/Imagenes/Productos");
@@ -182,6 +219,18 @@ namespace ProyectoTest.Controllers
             respuesta = ProductoLogica.Instancia.Eliminar(id);
             return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
         }
+
+
+
+        [HttpPost]
+        public JsonResult ActEstadoCompra(int id,int estado)
+        {
+            bool respuesta = false;
+            respuesta = VentaLogica.Instancia.ActualizarEstado(id,estado);
+            return Json(new { resultado = respuesta }, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 
     public class Response {

@@ -50,12 +50,15 @@ namespace ProyectoTest.Controllers
         // GET: Login
         public ActionResult Registrarse()
         {
-            return View(new Usuario() { Nombres= "",Apellidos= "",Correo="",Contrasena="",ConfirmarContrasena="" });
+            return View(new Usuario() { Nombres= "",Apellidos= "",Correo="",Contrasena="",ConfirmarContrasena="",EsAdministrador=false });
         }
 
         [HttpPost]
-        public ActionResult Registrarse(string NNombres, string NApellidos, string NCorreo, string NContrasena, string NConfirmarContrasena)
+        public ActionResult Registrarse(string NNombres, string NApellidos, string NCorreo, string NContrasena, string NConfirmarContrasena,string Tipo)
         {
+            int valor = Convert.ToInt32(Tipo.ToString());
+            bool estado = Convert.ToBoolean(valor);
+
             Usuario oUsuario = new Usuario()
             {
                 Nombres = NNombres,
@@ -63,7 +66,7 @@ namespace ProyectoTest.Controllers
                 Correo = NCorreo,
                 Contrasena = NContrasena,
                 ConfirmarContrasena = NConfirmarContrasena,
-                EsAdministrador = false
+                EsAdministrador = estado
             };
 
             if (NContrasena != NConfirmarContrasena)

@@ -18,5 +18,6 @@ namespace ProyectoTest.Models
         public bool Activo { get; set; }
         public string base64 { get; set; }
         public string extension { get; set; }
+        public int ID_Usuario { get; set; }
     }
 }
